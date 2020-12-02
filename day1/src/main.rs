@@ -17,7 +17,7 @@ fn main() {
     // Step 1
     for x in &nums {
         let y = 2020 - x;
-        if nums.contains(&y) {
+        if *x != y && nums.contains(&y) {
             println!("{}", x * y);
             break;
         }
@@ -27,7 +27,7 @@ fn main() {
     for x in &nums {
         for y in &nums {
             let z = 2020 - x - y;
-            if nums.contains(&z) {
+            if *x != *y && *y != z && *x != z && nums.contains(&z) {
                 println!("{}", x * y * z);
                 return;
             }
