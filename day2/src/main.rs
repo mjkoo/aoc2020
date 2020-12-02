@@ -18,11 +18,12 @@ fn main() {
     let part1 = passwords.iter().filter(|caps| {
         let min = caps["first"].parse::<usize>().unwrap();
         let max = caps["second"].parse::<usize>().unwrap();
-        let chr = caps["chr"].chars().nth(0).unwrap();
+        let chr = caps["chr"].chars().next().unwrap();
         let password = &caps["password"];
 
         let count = password.chars().filter(|c| *c == chr).count();
-        return min <= count && count <= max
+
+        min <= count && count <= max
     }).count();
 
     println!("{}", part1);
@@ -31,13 +32,13 @@ fn main() {
     let part2 = passwords.iter().filter(|caps| {
         let first_index = caps["first"].parse::<usize>().unwrap() - 1;
         let second_index = caps["second"].parse::<usize>().unwrap() - 1;
-        let chr = caps["chr"].chars().nth(0).unwrap();
+        let chr = caps["chr"].chars().next().unwrap();
         let password = &caps["password"];
 
         let first = password.chars().nth(first_index).unwrap() == chr;
         let second = password.chars().nth(second_index).unwrap() == chr;
 
-        return first ^ second
+        first ^ second
     }).count();
 
     println!("{}", part2);
